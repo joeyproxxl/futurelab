@@ -5,29 +5,37 @@ using UnityEngine;
 
 public class ColorMeng : MonoBehaviour
 {
-    public Color in1c, in2c;
+    public Color[] inc;
     public Color outc;
-
-    Vector3 in1v, in2v;
     Vector3 outv;
 
     void Update()
     {
-        in1v.x = in1c.r;
-        in1v.y = in1c.g;
-        in1v.z = in1c.b;
+        foreach (Color i in inc)
+        {
+            Combinecollors(i);
+        }
 
-        in2v.x = in2c.r;
-        in2v.y = in2c.g;
-        in2v.z = in2c.b;
+        SetNewColor();
+    }
 
-        outv = in1v + in2v;
-        outv = outv / 2;
+    void Combinecollors(Color i)
+    {
+        outv.x += i.r;
+        outv.y += i.g;
+        outv.z += i.b;
+    }
+
+    void SetNewColor()
+    {
+        outv = outv / inc.Length;
         
         outc.r = outv.x;
         outc.g = outv.y;
         outc.b = outv.z;
 
         GetComponent<MeshRenderer>().material.color = outc;
+
+        outv = Vector3.zero;
     }
 }
