@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class ColorMeng : MonoBehaviour
@@ -11,12 +8,23 @@ public class ColorMeng : MonoBehaviour
 
     void Update()
     {
+        updateColor();
+    }
+
+    void updateColor()
+    {
         foreach (Color i in inc)
         {
             Combinecollors(i);
         }
 
         SetNewColor();
+
+
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            Debug.Log("#" + ColorUtility.ToHtmlStringRGB(outc));
+        }
     }
 
     void Combinecollors(Color i)
