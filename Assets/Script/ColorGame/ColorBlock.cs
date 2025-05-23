@@ -4,33 +4,20 @@ using TMPro;
 public class ColorBlock : MonoBehaviour
 {
     public Color color;
-    public string hex;
-
-    public TextMeshProUGUI[] text;
-
-    public Vector3 location;
+    public TMP_Text[] text;
 
 
-    public void Start()
+    public void Init(Color colorToSet)
     {
-        location = transform.position;
-
+        color = colorToSet;
+        
         GetComponent<MeshRenderer>().material.color = color;
 
-        hex = "#" + ColorUtility.ToHtmlStringRGB(color);
+        string hex = "#" + ColorUtility.ToHtmlStringRGB(GetComponent<MeshRenderer>().material.color);
 
-        foreach (TMP_Text i in text)
+        for(int i = 0; i < text.Length; i++)
         {
-            i.text = hex;
+            text[i].text = hex;
         }
     }
-
-    public void SpawnNew()
-    {
-        GetComponent<Rigidbody>().isKinematic = false;
-        GetComponent<Rigidbody>().useGravity = true;
-        Instantiate(gameObject, location, this.transform.rotation);
-    }
-    
-
 }
