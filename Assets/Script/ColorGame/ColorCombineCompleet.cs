@@ -5,6 +5,8 @@ public class ColorCombineCompleet : MonoBehaviour
     public Color mainColor;
     public Color sellectedColor;
 
+    public MiniGameManager manager;
+
     void Start()
     {
         GetComponent<MeshRenderer>().material.color = mainColor;
@@ -12,19 +14,19 @@ public class ColorCombineCompleet : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 30)
+        if (other.gameObject.layer == 31)
         {
             sellectedColor = other.GetComponent<ColorBlock>().color;
             Destroy(other.gameObject);
 
-            if (sellectedColor == mainColor)
+            if (sellectedColor.r == mainColor.r && sellectedColor.g == mainColor.g && sellectedColor.b == mainColor.b)
             {
-                Debug.Log("Correct");
+                manager.collorCombineGame = true;
             }
 
             else
             {
-                Debug.Log("Not Correct");
+                manager.collorCombineGame = true;
             }
         }
     }

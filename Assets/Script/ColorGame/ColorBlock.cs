@@ -11,11 +11,11 @@ public class ColorBlock : MonoBehaviour
     {
         color = colorToSet;
         
-        GetComponent<MeshRenderer>().material.color = color;
+        GetComponent<MeshRenderer>().materials[1].color = color;
 
-        string hex = "#" + ColorUtility.ToHtmlStringRGB(GetComponent<MeshRenderer>().material.color);
-
-        for(int i = 0; i < text.Length; i++)
+        string hex = "#" + ColorUtility.ToHtmlStringRGB(GetComponent<MeshRenderer>().materials[1].color);
+        
+        for (int i = 0; i < text.Length; i++)
         {
             text[i].text = hex;
         }
